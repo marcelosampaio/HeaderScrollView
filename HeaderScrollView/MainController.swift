@@ -12,24 +12,27 @@ class MainController: UITableViewController {
 
     // MARK: - Properties
     private var source = [String]()
-    private var newPosition : CGFloat = 0.0
+    private var index : Int = -1
+    private var showTimer: Timer!
     
     // MARK: - Outlets
     @IBOutlet var detailHeaderView: UIView!
     @IBOutlet weak var detailHeaderScrollView: UIScrollView!
-    @IBOutlet weak var paginateButton: UIBarButtonItem!
+
     
     
     // MARK: - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        
+
         // load source
         loadSource()
         
         // data setup
         prepareData()
+        
+        // start auto display
+        startAutoShow()
         
     }
     
@@ -37,14 +40,13 @@ class MainController: UITableViewController {
     private func loadSource() {
         source.append("landscape")
         source.append("landscape2")
-        source.append("landscape")
-        source.append("landscape2")
-        source.append("landscape")
-        source.append("landscape2")
-        source.append("landscape")
-        source.append("landscape2")
-        source.append("landscape")
-        source.append("landscape2")
+        source.append("landscape3")
+        source.append("landscape4")
+        source.append("landscape5")
+        source.append("landscape6")
+        source.append("landscape7")
+        source.append("landscape8")
+        source.append("landscape9")
         
         //
         tableView.tableHeaderView = detailHeaderView
@@ -74,6 +76,8 @@ class MainController: UITableViewController {
 
         return cell
     }
+    
+    
 
     // MARK: - Horizontal Scroll Helper
     private func prepareData(){
@@ -83,41 +87,53 @@ class MainController: UITableViewController {
         
         // load images to the scrool view
         for i in 0..<source.count{
-            
-            
             let xPositon = self.view.frame.size.width * CGFloat(i)
-            
             // Image View ===================== begin =============
             let imageView = UIImageView()
-            
             imageView.contentMode=UIViewContentMode.scaleToFill
             imageView.clipsToBounds = true
             imageView.image = UIImage(named: source[i])
             imageView.frame=CGRect(x: xPositon, y: 0, width: self.detailHeaderView.frame.size.width, height: self.detailHeaderView.bounds.size.height)
             detailHeaderScrollView.contentSize.width = detailHeaderScrollView.frame.width * CGFloat((i + 1))
-            
+            print("🥪 detailHeaderScrollView.contentSize.width: \(detailHeaderScrollView.contentSize.width)")
             // add image
             detailHeaderScrollView.addSubview(imageView)
-
         }
         
     }
     
-    
-    // MARK: - UI Actions
-    @IBAction func paginate(_ sender: Any) {
-
-        print("🌳 paginate 👍  newPosition: \(newPosition)")
-        print("🌳 detailHeaderScrollView: \(detailHeaderScrollView)")
+    private func startAutoShow() {
         
-        let width: CGFloat = detailHeaderScrollView.frame.size.width
-        let height: CGFloat = detailHeaderScrollView.frame.size.height
-        newPosition = detailHeaderScrollView.contentOffset.x + width
-        let toVisible: CGRect = CGRect(x: newPosition, y: 0, width: width, height: height)
+        Timer.scheduledTimer(timeInterval: 2, target: self, selector: #selector(runTimedCode), userInfo: nil, repeats: true)
         
-        detailHeaderScrollView.scrollRectToVisible(toVisible, animated: true)
         
     }
     
-    
+    // MARK: - Timer Helper
+    @objc private func runTimedCode() {
+        print("🌳🌳🌳🌳🌳🌳🌳🌳🌳 index: \(index)  count:\(source.count)")
+        print("🌳🥇 detailHeaderScrollView.contentSize.width: \(detailHeaderScrollView.contentSize.width)")
+        print("🌳🥇 detailHeaderScrollView.contentOffset: \(detailHeaderScrollView.contentOffset)")
+        print("🌳 👉 bounds width: \(self.detailHeaderView.frame.size.width)")
+        
+        if index >= source.count - 1 {
+            index = 0
+        }else{
+            index = index + 1
+        }
+        
+        let xPosition : CGFloat = self.detailHeaderView.frame.size.width * CGFloat(index)
+        
+        UIView.animate(withDuration: 0.68, animations: {
+            // animations
+            self.detailHeaderScrollView.contentOffset = CGPoint(x: xPosition, y: 0.0)
+            
+        }) { (result) in
+            // completion
+            
+        }
+        
+
+        
+    }
 }

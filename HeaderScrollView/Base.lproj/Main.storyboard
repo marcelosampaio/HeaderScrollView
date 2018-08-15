@@ -34,17 +34,10 @@
                             <outlet property="delegate" destination="jPJ-Sf-Zbp" id="Bz1-Ma-3Lq"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="eho-We-FHo">
-                        <barButtonItem key="rightBarButtonItem" title="&gt;Pic" id="4Qa-f2-lrh">
-                            <connections>
-                                <action selector="paginate:" destination="jPJ-Sf-Zbp" id="JJk-rz-GjF"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" id="eho-We-FHo"/>
                     <connections>
                         <outlet property="detailHeaderScrollView" destination="eXK-EG-cEY" id="Nxe-Su-Qoe"/>
                         <outlet property="detailHeaderView" destination="FAO-1W-ndq" id="Yr0-9b-eM8"/>
-                        <outlet property="paginateButton" destination="4Qa-f2-lrh" id="C0P-Om-7sW"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yHW-br-GU7" userLabel="First Responder" sceneMemberID="firstResponder"/>
