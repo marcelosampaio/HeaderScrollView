@@ -24,6 +24,7 @@ class MainController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // load source
         loadSource()
         
@@ -95,11 +96,9 @@ class MainController: UITableViewController {
             imageView.frame=CGRect(x: xPositon, y: 0, width: self.detailHeaderView.frame.size.width, height: self.detailHeaderView.bounds.size.height)
             detailHeaderScrollView.contentSize.width = detailHeaderScrollView.frame.width * CGFloat((i + 1))
             
-            
             // add image
             detailHeaderScrollView.addSubview(imageView)
 
-            
         }
         
     }
@@ -107,19 +106,16 @@ class MainController: UITableViewController {
     
     // MARK: - UI Actions
     @IBAction func paginate(_ sender: Any) {
+
         print("🌳 paginate 👍  newPosition: \(newPosition)")
-        
-        
-        
-        
+        print("🌳 detailHeaderScrollView: \(detailHeaderScrollView)")
         
         let width: CGFloat = detailHeaderScrollView.frame.size.width
         let height: CGFloat = detailHeaderScrollView.frame.size.height
         newPosition = detailHeaderScrollView.contentOffset.x + width
-        let toVisible: CGRect = CGRect(x: newPosition, y: 0, width: width,   height: height)
+        let toVisible: CGRect = CGRect(x: newPosition, y: 0, width: width, height: height)
         
         detailHeaderScrollView.scrollRectToVisible(toVisible, animated: true)
-        self.tableView.reloadData()
         
     }
     
