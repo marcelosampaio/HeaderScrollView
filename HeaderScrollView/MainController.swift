@@ -49,11 +49,6 @@ class MainController: UITableViewController {
         
         // reload table view data
         tableView.reloadData()
-        
-        
-        
-        
-        
     }
     
     
@@ -76,12 +71,6 @@ class MainController: UITableViewController {
         cell.textLabel?.text = source[indexPath.row]
 
         return cell
-    }
-
-    // MARK: - Header Setup
-    private func headerSetup() {
-//        self.detailHeaderView.frame = CGRect(x: 0, y: 0, width: self.detailHeaderView.frame.size.width, height: self.detailHeaderView.bounds.size.height)
-//        self.tableView.tableHeaderView = self.detailHeaderView
     }
 
     // MARK: - Horizontal Scroll Helper
