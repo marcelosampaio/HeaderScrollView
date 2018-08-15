@@ -50,6 +50,10 @@ class MainController: UITableViewController {
         // reload table view data
         tableView.reloadData()
         
+        
+        
+        
+        
     }
     
     
@@ -96,8 +100,9 @@ class MainController: UITableViewController {
             let imageView = UIImageView()
             
             imageView.contentMode=UIViewContentMode.scaleToFill
+            imageView.clipsToBounds = true
             imageView.image = UIImage(named: source[i])
-            imageView.frame=CGRect(x: xPositon, y: 22, width: self.detailHeaderView.frame.size.width, height: self.detailHeaderView.bounds.size.height)            
+            imageView.frame=CGRect(x: xPositon, y: 0, width: self.detailHeaderView.frame.size.width, height: self.detailHeaderView.bounds.size.height)
             detailHeaderScrollView.contentSize.width = detailHeaderScrollView.frame.width * CGFloat((i + 1))
             
             
