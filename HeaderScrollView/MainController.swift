@@ -12,11 +12,12 @@ class MainController: UITableViewController {
 
     // MARK: - Properties
     private var source = [String]()
-    
+    private var newPosition : CGFloat = 0.0
     
     // MARK: - Outlets
     @IBOutlet var detailHeaderView: UIView!
     @IBOutlet weak var detailHeaderScrollView: UIScrollView!
+    @IBOutlet weak var paginateButton: UIBarButtonItem!
     
     
     // MARK: - View Life Cycle
@@ -34,15 +35,15 @@ class MainController: UITableViewController {
     // MARK: - Application Data Source
     private func loadSource() {
         source.append("landscape")
+        source.append("landscape2")
         source.append("landscape")
+        source.append("landscape2")
         source.append("landscape")
+        source.append("landscape2")
         source.append("landscape")
+        source.append("landscape2")
         source.append("landscape")
-        source.append("landscape")
-        source.append("landscape")
-        source.append("landscape")
-        source.append("landscape")
-        source.append("landscape")
+        source.append("landscape2")
         
         //
         tableView.tableHeaderView = detailHeaderView
@@ -100,6 +101,25 @@ class MainController: UITableViewController {
 
             
         }
+        
+    }
+    
+    
+    // MARK: - UI Actions
+    @IBAction func paginate(_ sender: Any) {
+        print("🌳 paginate 👍  newPosition: \(newPosition)")
+        
+        
+        
+        
+        
+        let width: CGFloat = detailHeaderScrollView.frame.size.width
+        let height: CGFloat = detailHeaderScrollView.frame.size.height
+        newPosition = detailHeaderScrollView.contentOffset.x + width
+        let toVisible: CGRect = CGRect(x: newPosition, y: 0, width: width,   height: height)
+        
+        detailHeaderScrollView.scrollRectToVisible(toVisible, animated: true)
+        self.tableView.reloadData()
         
     }
     
