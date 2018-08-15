@@ -116,15 +116,18 @@ class MainController: UITableViewController {
         print("🌳🥇 detailHeaderScrollView.contentOffset: \(detailHeaderScrollView.contentOffset)")
         print("🌳 👉 bounds width: \(self.detailHeaderView.frame.size.width)")
         
+        var duration = 0.68
         if index >= source.count - 1 {
             index = 0
+            duration = 0.38
         }else{
             index = index + 1
+            duration = 0.68
         }
         
         let xPosition : CGFloat = self.detailHeaderView.frame.size.width * CGFloat(index)
         
-        UIView.animate(withDuration: 0.68, animations: {
+        UIView.animate(withDuration: duration, animations: {
             // animations
             self.detailHeaderScrollView.contentOffset = CGPoint(x: xPosition, y: 0.0)
             
